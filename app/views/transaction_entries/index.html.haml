@@ -1,0 +1,29 @@
+%h1 Listing transaction_entries
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Transaction type
+      %th Amount
+      %th Category
+      %th Transaction date
+      %th
+      %th
+      %th
+
+  %tbody
+    - @transaction_entries.each do |transaction_entry|
+      %tr
+        %td= transaction_entry.user_id
+        %td= transaction_entry.transaction_type
+        %td= transaction_entry.amount
+        %td= transaction_entry.category_id
+        %td= transaction_entry.transaction_date
+        %td= link_to 'Show', transaction_entry
+        %td= link_to 'Edit', edit_transaction_entry_path(transaction_entry)
+        %td= link_to 'Destroy', transaction_entry, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Transaction entry', new_transaction_entry_path
