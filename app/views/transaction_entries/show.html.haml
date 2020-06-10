@@ -2,7 +2,7 @@
 
 %p
   %b User:
-  = @transaction_entry.user_id
+  = @transaction_entry.user.name
 %p
   %b Transaction type:
   = @transaction_entry.transaction_type
@@ -11,7 +11,7 @@
   = @transaction_entry.amount
 %p
   %b Category:
-  = @transaction_entry.category_id
+  = @transaction_entry.category.name
 %p
   %b Transaction date:
   = @transaction_entry.transaction_date

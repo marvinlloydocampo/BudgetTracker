@@ -2,7 +2,7 @@ module TransactionEntriesHelper
    DEFAULT_CATEGORY = ['Default Category', 0].freeze
 
   def available_transaction_types
-    TransactionEntry.transaction_types.map {|k, v| [k.humanize.capitalize, v]}
+    TransactionEntry.transaction_types.map {|k, v| [k.humanize.capitalize, k]}
   end
 
   def available_categories
