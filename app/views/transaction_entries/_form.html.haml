@@ -1,14 +1,19 @@
 = form_for @transaction_entry do |f|
   - if @transaction_entry.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@transaction_entry.errors.count, "error")} prohibited this transaction_entry from being saved:"
+      %h2= "#{pluralize(@transaction_entry.errors.count, "error")} prohibited this transaction from being saved:"
       %ul
         - @transaction_entry.errors.full_messages.each do |message|
           %li= message
 
   .field
-    = f.label :user_id
-    = f.number_field :user_id
+
+    - if @user_id.present?
+      Creating transaction for User:
+      = selected_user_name
+    - else
+      = f.label :user_id
+      = f.select :user_id, available_users
   .field
     = f.label :transaction_type
     = f.select :transaction_type, available_transaction_types

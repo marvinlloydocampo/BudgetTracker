@@ -8,4 +8,12 @@ module TransactionEntriesHelper
   def available_categories
     Category.all&.map { |c| [c.name, c.id] } || DEFAULT_CATEGORY
   end
+
+  def available_users
+    User.all&.map { |u| [u.name, u.id] }
+  end
+
+  def selected_user_name
+    User.find(@user_id).name
+  end
 end

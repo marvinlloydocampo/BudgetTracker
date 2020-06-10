@@ -1,5 +1,6 @@
 class TransactionEntriesController < ApplicationController
   before_action :set_transaction_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_id, only: [:new]
 
   # GET /transaction_entries
   # GET /transaction_entries.json
@@ -15,6 +16,7 @@ class TransactionEntriesController < ApplicationController
   # GET /transaction_entries/new
   def new
     @transaction_entry = TransactionEntry.new
+    @transaction_entry.user_id = @user_id
   end
 
   # GET /transaction_entries/1/edit
@@ -70,5 +72,9 @@ class TransactionEntriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def transaction_entry_params
       params.require(:transaction_entry).permit(:user_id, :transaction_type, :amount, :category_id, :transaction_date)
+    end
+
+    def set_user_id
+      @user_id = params[:user_id]
     end
 end
