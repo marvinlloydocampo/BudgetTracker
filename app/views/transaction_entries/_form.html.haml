@@ -11,6 +11,7 @@
     - if @user_id.present?
       Creating transaction for User:
       = selected_user_name
+      = f.hidden_field :user_id
     - else
       = f.label :user_id
       = f.select :user_id, available_users
@@ -22,9 +23,9 @@
     = f.text_field :amount
   .field
     = f.label :category_id
-    = f.number_field :category_id
+    = f.select :category_id, available_categories
   .field
     = f.label :transaction_date
-    = f.date_select :transaction_date
+    = f.date_field :transaction_date
   .actions
     = f.submit 'Save'
