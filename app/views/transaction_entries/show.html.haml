@@ -1,21 +1,22 @@
 %p#notice= notice
 
-%p
+.div.container.ml-1
+  %h1 Transaction Information
   %b User:
   = @transaction_entry.user.name
-%p
+  %br
   %b Transaction type:
   = @transaction_entry.transaction_type
-%p
+  %br
   %b Amount:
   = @transaction_entry.amount
-%p
+  %br
   %b Category:
   = @transaction_entry.category.name
-%p
+  %br
   %b Transaction date:
   = @transaction_entry.transaction_date
-
-= link_to 'Edit', edit_transaction_entry_path(@transaction_entry)
-\|
-= link_to 'Back', transaction_entries_path
+  %br
+  %br
+  = link_to 'Edit', edit_transaction_entry_path(@transaction_entry), class: 'btn btn-primary'
+  = link_to 'Back', transaction_entries_path, class: 'btn btn-primary'
