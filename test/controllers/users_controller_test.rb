@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
+    @user = users(:user_one)
   end
 
   test "should get index" do
@@ -26,6 +26,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should show user" do
     get user_url(@user)
     assert_response :success
+  end
+
+  test "should show all user transaction if no params search available" do
+    get user_url(@user)
+    user_transaction_count = TransactionEntry.where(user_id: @user.id).count
+    assert_equal user_transaction_count, assigns(:user_transactions).count
+  end
+
+  test "should show user transaction based on params search" do
+    start_date = 1.days.ago.to_date.strftime("%d/%m/%Y")
+    end_date = 3.days.after.to_date.strftime("%d/%m/%Y")
+    get user_url(@user), params: { search: { transaction_date_range: "#{start_date} - #{end_date}"}}
+    assert_equal 1, assigns(:user_transactions).count
   end
 
   test "should get edit" do
