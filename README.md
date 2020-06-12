@@ -1,27 +1,11 @@
-<<<<<<< HEAD
 # README
 # BudgetTracker
 Simple Budget Tracker Web App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Created using `Ruby 2.5.3` and `Rails 5.2`
 
-Things you may want to cover:
+# Background Job
+To execute background job just run `TransactionListJob.perform_now`
+Can also use parameters to filter by date range, just use parameter variable `start_date` and `end_date`
+best use date format of `DD/MM/YYYY`
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
