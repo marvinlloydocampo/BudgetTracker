@@ -1,15 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 1
+transaction_one:
+  user: user_one
   transaction_type: 1
-  amount: 
-  category_id: 1
-  transaction_date: 2020-06-11
+  amount: -10.00
+  category: category_one
+  transaction_date: <%= 1.days.ago %>
 
-two:
-  user_id: 1
+transaction_two:
+  user: user_one
+  transaction_type: 0
+  amount: 20.0
+  category: category_two
+  transaction_date: <%= 5.days.after %>
+
+transaction_three:
+  user: user_two
+  transaction_type: 0
+  amount: 30.0
+  category: category_two
+  transaction_date: <%= 1.days.ago %>
+
+transaction_four:
+  user: user_two
   transaction_type: 1
-  amount: 
-  category_id: 1
-  transaction_date: 2020-06-11
+  amount: -40.0
+  category: category_one
+  transaction_date: <%= Date.today %>
