@@ -27,6 +27,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml-rails'
 
 gem 'pry-byebug'
+gem 'bootstrap'
+gem 'jquery-rails' # dependency of daterangepicker
+gem 'momentjs-rails' # dependency of daterangepicker
+gem 'bootstrap-daterangepicker-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
