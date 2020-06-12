@@ -10,6 +10,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user_transactions = if params[:search] && params[:search][:transaction_date_range].present?
+      @transaction_date_range = params[:search][:transaction_date_range]
+      start_date, end_date = @transaction_date_range.split(' - ')
+      @user.transaction_entries.transactions_between(start_date, end_date)
+    else
+      @user.transaction_entries.all
+    end
   end
 
   # GET /users/new

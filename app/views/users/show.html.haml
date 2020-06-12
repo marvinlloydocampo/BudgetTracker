@@ -1,12 +1,35 @@
 %p#notice= notice
 
-%p
-  %b Name:
+.div.container
+  %h1 User Information
+  %b User Name:
   = @user.name
 
-= link_to 'Create Transaction', new_transaction_entry_path(@user)
-%br
-%br
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+  .div.container.border.rounded.transaction-list.p-2.m-2
+    %h3 User Transaction List
+    .div.container.search-filter.border.rounded.p-2.m-2
+      = form_for(:search, class: 'form-inline', url: user_url, method: :get) do |f|
+        .div.form-group
+          = f.label :transaction_date_range, "Transaction Date Range"
+          = f.text_field :transaction_date_range, class: 'form-control', data: { behavior: 'daterangepicker' }, value: @transaction_date_range
+        = f.submit "Search", class: 'btn btn-success'
+
+    %table.table.table-dark
+      %thead
+        %tr
+          %th Transaction type
+          %th Amount
+          %th Category
+          %th Transaction date
+
+      %tbody
+        - @user_transactions.each do |transaction_entry|
+          %tr
+            %td= transaction_entry.transaction_type
+            %td= transaction_entry.amount
+            %td= transaction_entry.category.name
+            %td= transaction_entry.transaction_date
+
+  = link_to 'Create User Transaction', new_transaction_entry_path(@user), class: 'btn btn-primary'
+  = link_to 'Edit User Info', edit_user_path(@user), class: 'btn btn-primary'
+  = link_to 'Back', users_path, class: 'btn btn-primary'

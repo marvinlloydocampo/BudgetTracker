@@ -1,31 +1,31 @@
-= form_for @transaction_entry do |f|
-  - if @transaction_entry.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@transaction_entry.errors.count, "error")} prohibited this transaction from being saved:"
-      %ul
-        - @transaction_entry.errors.full_messages.each do |message|
-          %li= message
+.div.container
+  = form_for @transaction_entry do |f|
+    - if @transaction_entry.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@transaction_entry.errors.count, "error")} prohibited this transaction from being saved:"
+        %ul
+          - @transaction_entry.errors.full_messages.each do |message|
+            %li= message
 
-  .field
+    .form-group
+      - if @user_id.present?
+        %h3= "Creating transaction for User: #{selected_user_name}"
+        = f.hidden_field :user_id
+      - else
+        = f.label :user_id
+        = f.select :user_id, available_users
+    .form-group
+      = f.label :transaction_type
+      = f.select :transaction_type, available_transaction_types
+    .form-group
+      = f.label :amount
+      = f.text_field :amount
+    .form-group
+      = f.label :category_id
+      = f.select :category_id, available_categories
+    .form-group
+      = f.label :transaction_date
+      = f.date_field :transaction_date
 
-    - if @user_id.present?
-      Creating transaction for User:
-      = selected_user_name
-      = f.hidden_field :user_id
-    - else
-      = f.label :user_id
-      = f.select :user_id, available_users
-  .field
-    = f.label :transaction_type
-    = f.select :transaction_type, available_transaction_types
-  .field
-    = f.label :amount
-    = f.text_field :amount
-  .field
-    = f.label :category_id
-    = f.select :category_id, available_categories
-  .field
-    = f.label :transaction_date
-    = f.date_field :transaction_date
-  .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
+    = link_to 'Back', transaction_entries_path, class: 'btn btn-primary'

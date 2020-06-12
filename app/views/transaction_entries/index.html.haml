@@ -1,29 +1,28 @@
-%h1 Listing Transactions
+.div.container
+  %h1 Listing Transactions
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Transaction type
-      %th Amount
-      %th Category
-      %th Transaction date
-      %th
-      %th
-      %th
-
-  %tbody
-    - @transaction_entries.each do |transaction_entry|
+  %table.table.table-dark
+    %thead
       %tr
-        %td= transaction_entry.user.name
-        %td= transaction_entry.transaction_type
-        %td= transaction_entry.amount
-        %td= transaction_entry.category.name
-        %td= transaction_entry.transaction_date
-        %td= link_to 'Show', transaction_entry
-        %td= link_to 'Edit', edit_transaction_entry_path(transaction_entry)
-        %td= link_to 'Destroy', transaction_entry, method: :delete, data: { confirm: 'Are you sure?' }
+        %th User
+        %th Transaction type
+        %th Amount
+        %th Category
+        %th Transaction date
+        %th
+        %th
 
-%br
+    %tbody
+      - @transaction_entries.each do |transaction_entry|
+        %tr
+          %td= transaction_entry.user.name
+          %td= transaction_entry.transaction_type
+          %td= transaction_entry.amount
+          %td= transaction_entry.category.name
+          %td= transaction_entry.transaction_date
+          %td= link_to 'Show', transaction_entry, class: 'btn btn-primary'
+          %td= link_to 'Destroy', transaction_entry, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
 
-= link_to 'New Transaction entry', new_transaction_entry_path
+  %br
+
+  = link_to 'New Transaction', new_transaction_entry_path, class: 'btn btn-primary'
