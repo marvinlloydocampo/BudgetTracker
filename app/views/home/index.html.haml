@@ -1,0 +1,29 @@
+.div.container
+  .div.row
+    .div.col.border.rounded.p-1
+      %h5 Previously Created Transactions
+      %table.table.table-dark
+        %thead
+          %tr
+            %th Transaction date
+            %th User
+            %th Category
+            %th Amount
+        %tbody
+          - @last_10_transactions.each do |transaction_entry|
+            %tr{class: "#{transaction_entry.income? ? 'bg-success' : 'bg-danger'}" }
+              %td= transaction_entry.transaction_date
+              %td= transaction_entry.user.name
+              %td= transaction_entry.category.name
+              %td= transaction_entry.amount
+
+    .div.col.border.rounded.p-1
+      %h5 Previously Created Users
+      %table.table.table-dark
+        %thead
+          %tr
+            %th Name
+        %tbody
+          - @last_5_users.each do |user|
+            %tr.bg-info
+              %td= link_to user.name, user
